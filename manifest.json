@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "io.github.yoann54.scratchpad-pinned",
   "name": "Scratchpad Pinned",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "yoann54",
   "license": "MIT",
-  "description": "Pin apps to the Hyprland scratchpad: they start hidden in it at login (or every time they open), and a bar icon counts the windows waiting there.",
+  "description": "Pin apps to the Hyprland scratchpad: they start hidden in it at login (or whenever they open), and a bar icon shows when windows are waiting there.",
   "homepage": "https://github.com/yoann54/scratchpad-pinned",
   "repository": "https://github.com/yoann54/scratchpad-pinned",
   "keywords": [

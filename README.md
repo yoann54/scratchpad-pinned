@@ -19,6 +19,24 @@ scratchpad (`Super + S`).
 omarchy plugin add https://github.com/yoann54/scratchpad-pinned.git --enable
 ```
 
+### Requirements
+
+Omarchy with its shell plugins (Quickshell) and Hyprland 0.56 or newer, which
+takes Lua dispatchers. The plugin also calls `inotifywait` (inotify-tools) and
+`notify-send` (libnotify); both ship with Omarchy. It needs no network access
+and no privileges.
+
+## Uninstall
+
+```bash
+omarchy plugin remove io.github.yoann54.scratchpad-pinned
+rm -r ~/.config/scratchpad-pinned   # optional: the list of pinned apps
+```
+
+Pinned apps stop being launched at login as soon as the plugin is removed.
+The plugin writes nothing else: no Hyprland config, no other Omarchy file.
+Windows already in the scratchpad stay there; `Super + S` still shows them.
+
 ## Use
 
 | Action | How |
