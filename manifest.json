@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.yoann54.scratchpad-pinned",
+  "name": "Scratchpad Pinned",
+  "version": "0.1.0",
+  "author": "yoann54",
+  "license": "MIT",
+  "description": "Pin apps to the Hyprland scratchpad: they start hidden in it at login (or every time they open), and a bar icon counts the windows waiting there.",
+  "homepage": "https://github.com/yoann54/scratchpad-pinned",
+  "repository": "https://github.com/yoann54/scratchpad-pinned",
+  "keywords": [
+    "scratchpad",
+    "autostart",
+    "hyprland",
+    "windows",
+    "workspace"
+  ],
+  "kinds": [
+    "service",
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Scratchpad Pinned",
+    "description": "Windows in the scratchpad at a glance; click to show it, right-click to manage pinned apps",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "schema": [
+      {
+        "key": "hideWhenEmpty",
+        "type": "boolean",
+        "label": "Hide when empty",
+        "description": "Hide the icon while the scratchpad holds no window.",
+        "defaultValue": false
+      }
+    ]
+  }
+}

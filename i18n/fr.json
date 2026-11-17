@@ -1,0 +1,31 @@
+{
+  "tooltip.count": {
+    "one": "%1 fenêtre dans le scratchpad",
+    "other": "%1 fenêtres dans le scratchpad"
+  },
+  "popup.pinned": "Applications épinglées",
+  "popup.noPinned": "Les applications épinglées démarrent cachées dans le scratchpad à la connexion. Aucune pour l'instant : ajoutes-en une ci-dessous.",
+  "popup.launch": "La lancer maintenant dans le scratchpad",
+  "popup.unpin": "Désépingler",
+  "mode.startup": "À la connexion",
+  "mode.always": "Toujours",
+  "mode.startupHint": "Démarre cachée dans le scratchpad à la connexion, puis s'ouvre normalement.",
+  "mode.alwaysHint": "Chaque nouvelle fenêtre de cette application va dans le scratchpad.",
+  "notify.pinned": "%1 épinglée au scratchpad",
+  "notify.unpinned": "%1 retirée du scratchpad",
+  "notify.notPinned": "%1 n'est pas épinglée",
+  "notify.noWindow": "Aucune fenêtre active à épingler",
+  "notify.noCommand": "Impossible de savoir comment lancer %1",
+  "popup.pinnedHint": "Ces applications démarrent cachées dans le scratchpad à la connexion.",
+  "popup.emptyScratchpad": "Rien n'est caché pour l'instant.",
+  "popup.windowLabel": "%1 — %2",
+  "popup.showWindow": "Afficher cette fenêtre",
+  "popup.pinApp": "Épingler %1 : la démarrer dans le scratchpad à la connexion",
+  "popup.unpinApp": "Désépingler %1",
+  "popup.bringWindow": "La ramener sur cet espace de travail",
+  "notify.otherSpecial": "%1 a déjà sa propre zone cachée et ne peut pas être épinglée",
+  "popup.addApp": "Ajouter une application…",
+  "popup.noMatch": "Aucune application trouvée",
+  "popup.appOpen": "Ouverte",
+  "popup.showWindowTitled": "Afficher cette fenêtre (%1)"
+}

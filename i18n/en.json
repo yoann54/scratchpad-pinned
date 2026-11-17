@@ -1,0 +1,31 @@
+{
+  "tooltip.count": {
+    "one": "%1 window in the scratchpad",
+    "other": "%1 windows in the scratchpad"
+  },
+  "popup.pinned": "Pinned apps",
+  "popup.noPinned": "Pinned apps start hidden in the scratchpad when you log in. None yet: add one below.",
+  "popup.launch": "Launch it now into the scratchpad",
+  "popup.unpin": "Unpin",
+  "mode.startup": "At login",
+  "mode.always": "Always",
+  "mode.startupHint": "Starts hidden in the scratchpad at login; opens normally afterwards.",
+  "mode.alwaysHint": "Every new window of this app goes to the scratchpad.",
+  "notify.pinned": "%1 pinned to the scratchpad",
+  "notify.unpinned": "%1 unpinned from the scratchpad",
+  "notify.notPinned": "%1 is not pinned",
+  "notify.noWindow": "No focused window to pin",
+  "notify.noCommand": "Could not find how to start %1",
+  "popup.pinnedHint": "These apps start hidden in the scratchpad when you log in.",
+  "popup.emptyScratchpad": "Nothing hidden right now.",
+  "popup.windowLabel": "%1 — %2",
+  "popup.showWindow": "Show this window",
+  "popup.pinApp": "Pin %1: start it in the scratchpad at login",
+  "popup.unpinApp": "Unpin %1",
+  "popup.bringWindow": "Bring it to this workspace",
+  "notify.otherSpecial": "%1 lives on its own hidden workspace and cannot be pinned",
+  "popup.addApp": "Add an app…",
+  "popup.noMatch": "No matching app",
+  "popup.appOpen": "Open now",
+  "popup.showWindowTitled": "Show this window (%1)"
+}
