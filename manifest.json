@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "io.github.yoann54.scratchpad-pinned",
   "name": "Scratchpad Pinned",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "yoann54",
   "license": "MIT",
   "description": "Pin apps to the Hyprland scratchpad: they start hidden in it at login (or whenever they open), and a bar icon shows when windows are waiting there.",

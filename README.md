@@ -35,6 +35,9 @@ rm -r ~/.config/scratchpad-pinned   # optional: the list of pinned apps
 
 Pinned apps stop being launched at login as soon as the plugin is removed.
 The plugin writes nothing else: no Hyprland config, no other Omarchy file.
+`apps.json` is readable by you only (`0600`, in a `0700` directory): an app
+pinned without a desktop entry is saved with the command line it was started
+with, arguments included.
 Windows already in the scratchpad stay there; `Super + S` still shows them.
 
 ## Use

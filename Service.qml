@@ -150,11 +150,15 @@ Item {
 
   // Watch the directory, not the file: editors and `jq … > tmp && mv` replace
   // the file, and a watch on the file itself stays on the old inode.
+  // apps.json can hold a full command line (an app pinned from its process,
+  // arguments included), so the directory and the file are owner-only, also
+  // for lists written by an earlier version under the default umask.
   Process {
     id: configWatch
     running: true
     command: ["sh", "-c",
-      'mkdir -p "$1" && exec inotifywait -m -q -e close_write,moved_to,create,delete --format %f "$1"',
+      'umask 077 && mkdir -p "$1" && chmod 700 "$1" && { [ ! -e "$1/apps.json" ] || chmod 600 "$1/apps.json"; } && ' +
+      'exec inotifywait -m -q -e close_write,moved_to,create,delete --format %f "$1"',
       "sh", root.configDir]
     stdout: SplitParser {
       onRead: function(name) { if (String(name) === "apps.json") configFile.reload() }
@@ -172,7 +176,8 @@ Item {
   function write(text) {
     if (writer.running) { writer.pending = text; return }
     writer.command = ["sh", "-c",
-      'mkdir -p "$(dirname "$1")" && printf "%s" "$2" > "$1.tmp" && mv "$1.tmp" "$1"',
+      'umask 077 && mkdir -p "$(dirname "$1")" && chmod 700 "$(dirname "$1")" && ' +
+      'rm -f "$1.tmp" && printf "%s" "$2" > "$1.tmp" && chmod 600 "$1.tmp" && mv "$1.tmp" "$1"',
       "sh", root.configPath, text]
     writer.running = true
   }

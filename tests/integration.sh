@@ -58,6 +58,12 @@ addr=$(hyprctl clients -j | jq -r '[.[] | select(.class == "sp-it-always" and .w
 ipc bring "$addr"; sleep 0.8
 check "bring: back on the current workspace" "$here,$here" "$(workspaces sp-it-always)"
 
+# 6. The pinned list can hold command lines: owner-only, even after a write.
+set_config '{"apps":[]}'
+ipc pinApp foot >/dev/null; sleep 1
+check "permissions: config directory" "700" "$(stat -c %a "$(dirname "$CONFIG")")"
+check "permissions: apps.json" "600" "$(stat -c %a "$CONFIG")"
+
 echo
 echo "$pass passed, $fail failed"
 (( fail == 0 ))
