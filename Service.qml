@@ -165,9 +165,22 @@ Item {
     }
   }
 
+  // The list goes over stdin, never argv: a command line is readable by every
+  // local account in /proc, and the list can hold an app's own arguments.
+  // Closing stdin (stdinEnabled = false) ends `cat` once the text is written.
   Process {
     id: writer
     property string pending: ""
+    property string payload: ""
+    command: ["sh", "-c",
+      'umask 077 && mkdir -p "$(dirname "$1")" && chmod 700 "$(dirname "$1")" && ' +
+      'rm -f "$1.tmp" && cat > "$1.tmp" && chmod 600 "$1.tmp" && mv "$1.tmp" "$1"',
+      "sh", root.configPath]
+    onStarted: {
+      write(payload)
+      payload = ""
+      stdinEnabled = false
+    }
     onExited: {
       if (pending !== "") { var next = pending; pending = ""; root.write(next) }
     }
@@ -175,10 +188,8 @@ Item {
 
   function write(text) {
     if (writer.running) { writer.pending = text; return }
-    writer.command = ["sh", "-c",
-      'umask 077 && mkdir -p "$(dirname "$1")" && chmod 700 "$(dirname "$1")" && ' +
-      'rm -f "$1.tmp" && printf "%s" "$2" > "$1.tmp" && chmod 600 "$1.tmp" && mv "$1.tmp" "$1"',
-      "sh", root.configPath, text]
+    writer.payload = text
+    writer.stdinEnabled = true
     writer.running = true
   }
 

@@ -64,6 +64,34 @@ ipc pinApp foot >/dev/null; sleep 1
 check "permissions: config directory" "700" "$(stat -c %a "$(dirname "$CONFIG")")"
 check "permissions: apps.json" "600" "$(stat -c %a "$CONFIG")"
 
+# 7. Saving never puts the list on a command line, where other accounts can
+#    read it in /proc. A save lasts a few milliseconds, so watch the shell's
+#    child processes in a tight loop while saving many times. The secret reaches the scanner via
+#    the environment, so the scanner's own command line does not match.
+secret="sp-it-secret-$$"
+set_config '{"apps":[{"appId":"sp-it-secret","command":["foot","--token","'"$secret"'"],"mode":"startup"}]}'
+seen=$(mktemp)
+SECRET=$secret SHELL_PID=$(pgrep -x -o quickshell) python3 -I -c '
+import glob, os, time
+secret = os.environ["SECRET"].encode(); root = os.environ["SHELL_PID"]; hits = set()
+end = time.monotonic() + 6
+while time.monotonic() < end:
+    for path in glob.glob("/proc/" + root + "/task/*/children"):
+        try:
+            with open(path) as f: pids = f.read().split()
+        except OSError: continue
+        for pid in pids:
+            try:
+                with open("/proc/" + pid + "/cmdline", "rb") as f:
+                    if secret in f.read(): hits.add(pid)
+            except OSError: pass
+print(len(hits))' > "$seen" &
+watcher=$!; sleep 0.3
+for _ in $(seq 25); do ipc pinApp foot >/dev/null; sleep 0.15; done
+wait "$watcher"
+check "save: list never on a command line" "0" "$(cat "$seen")"
+rm -f "$seen"
+
 echo
 echo "$pass passed, $fail failed"
 (( fail == 0 ))
